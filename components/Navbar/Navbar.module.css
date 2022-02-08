@@ -1,0 +1,24 @@
+.nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	height: 4rem;
+	width: 100%;
+	position: fixed;
+	z-index: 2;
+}
+.navItem {
+	margin: 1rem;
+	display: block;
+}
+.navLinks {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	width: auto;
+}
+@media screen and (max-width: 420px) {
+	.navLinks {
+		display: none;
+	}
+}

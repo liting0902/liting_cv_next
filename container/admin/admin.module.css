@@ -1,0 +1,77 @@
+.btnAdmin {
+	display: flex;
+	background: rgb(0, 0, 0, 0.5);
+	color: white;
+	font-size: 1.2em;
+	padding: 0.6em;
+	text-align: center;
+	vertical-align: middle;
+	margin: auto;
+	border-radius: 10px;
+	height: 3rem;
+	max-width: 15rem;
+	letter-spacing: 0.1em;
+}
+.inputAdmin {
+	display: block;
+	height: 1.6rem;
+	font-size: 1.4em;
+	color: black;
+	background: rgb(255, 255, 255, 0.5);
+	padding: 0.6em;
+	border: none;
+	transition: all 0.4s ease-in;
+	margin: 1em;
+	border-radius: 2px;
+}
+.inputAdmin:focus {
+	outline: none;
+	border-bottom: white 3px solid;
+	background: rgb(255, 255, 255, 0.8);
+}
+.iconStyle {
+	width: 2rem;
+	font-size: 1.6rem;
+	margin-right: 0.4rem;
+}
+.formExperience {
+	/* border: white 2px solid; */
+	margin: 0 auto;
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 1em;
+}
+.labelStyle {
+	letter-spacing: 2px;
+	color: white;
+}
+.datePciker {
+	width: 15em;
+	background: rgb(255, 255, 255, 0.5);
+	color: black;
+	font-size: 1.2rem;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	border-radius: 5px;
+	border: white 2px solid;
+	margin: 5px;
+}
+.datePciker:focus {
+	outline: none;
+}
+.inputExperience {
+	width: 80%;
+	margin-bottom: 1rem;
+	background: rgb(255, 255, 255, 0.5);
+	color: black;
+	font-size: 1.2rem;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	border-radius: 5px;
+	border: white 2px solid;
+	margin: 5px;
+	padding: 0.5em;
+}
+.inputExperience:focus {
+	outline: none;
+}
