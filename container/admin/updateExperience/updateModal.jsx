@@ -48,16 +48,10 @@ function UpdateModal({ t, toggleHandler, selectedId, isAddNew }) {
 			? experienceData
 			: [...experienceData, newData];
 		const res = await updateExperience(setData, language);
-		console.log("save:::@", selectedId);
 		experienceDataDispatch({ type: "DATA", data: setData });
 		if (res) {
-			// console.log(setData);
-			// alert("Update successfully");
+			alert("Update successfully");
 			toggleHandler(false);
-			const months = ["Jan", "March", "April", "June"];
-
-			// replaces 1 element at index 4
-			console.log(experienceData, "~~~~~", newData);
 		}
 	};
 	console.log("isAddNew", isAddNew);
