@@ -3,22 +3,23 @@ import { logOut } from "../pages/api/adminAuthentication.js";
 import BtnLayout from "../components/layouts/BtnLayout.js";
 import { MdLogout } from "react-icons/md";
 import { AuthContext, AuthDispatchContext } from "../contexts/auth.context";
-import Router, { useRouter } from "next/router";
-import { useAuthStateChanged } from "../hooks/useAuthStateChanged.js";
 export default function () {
 	const authInfo = useContext(AuthContext);
 	const authDispatch = useContext(AuthDispatchContext);
-
-	const route = useRouter();
-	const authUser = useAuthStateChanged();
+	const [isAuth, setIsAuth] = useState(false);
+	useEffect(() => {
+		if (!!window && window.sessionStorage.getItem("admin")) {
+			setIsAuth(true);
+		}
+	});
 	const handleLogout = async (event) => {
 		event.preventDefault();
-		const res = await logOut();
-
-		if (res) {
+		const result = await logOut();
+		if (result) {
+			window.logoutTimeout = null;
 			authDispatch({
 				type: "AUTHORIZATION",
-				authInfo: { uid: null, expirationTime: null, idToken: null },
+				authInfo: { expirationTime: null, idToken: null },
 			});
 		}
 	};
@@ -26,7 +27,9 @@ export default function () {
 		<div
 			style={{
 				display: `${
-					!!authUser && authUser.uid !== null ? "block" : "none"
+					isAuth || (!!authInfo && !!authInfo.idToken)
+						? "block"
+						: "none"
 				}`,
 				marginTop: ".6rem",
 			}}>

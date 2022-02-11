@@ -37,7 +37,7 @@ const verifyConfirmation = async (code) => {
 		} catch (err) {}
 		const objString = JSON.stringify(result);
 		const resultJSON = JSON.parse(objString);
-		if (resultJSON["user"]["uid"]) {
+		if (resultJSON["user"]) {
 			console.log("verified");
 			return true;
 		} else {
@@ -48,12 +48,15 @@ const verifyConfirmation = async (code) => {
 };
 const onAuthChanged = async () => {
 	let authUserInfo;
-	await auth.onAuthStateChanged((user) => {
+	await auth.onAuthStateChanged(async (user) => {
 		if (user) {
-			const uid = user.uid;
 			const expirationTime = user["stsTokenManager"]["expirationTime"];
-			authUserInfo = { uid, expirationTime };
-			window.sessionStorage.setItem("admin", authUserInfo);
+			const idToken = await user.getIdToken().then((token) => {
+				return token;
+			});
+			authUserInfo = { expirationTime, idToken };
+
+			window.sessionStorage.setItem("admin", idToken);
 		}
 	});
 	return authUserInfo;

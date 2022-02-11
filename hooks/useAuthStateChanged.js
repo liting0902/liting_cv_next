@@ -8,13 +8,12 @@ export function useAuthStateChanged() {
 	useEffect(() => {
 		auth.onAuthStateChanged(async (user) => {
 			if (user) {
-				const uid = JSON.stringify(user["uid"]);
 				const expirationTime =
 					user["stsTokenManager"]["expirationTime"];
 				const idToken = await user.getIdToken().then((token) => {
 					return token;
 				});
-				user && setAuthUser({ uid, expirationTime, idToken });
+				user && setAuthUser({ expirationTime, idToken });
 			}
 		});
 	}, []);
