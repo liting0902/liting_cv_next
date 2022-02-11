@@ -1,16 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import UpdatePS from "../../container/admin/updatePS.js";
-import { useRouter } from "next/router";
+
 export default function () {
-	const route = useRouter();
-
-	useEffect(() => {
-		if (!window.sessionStorage.getItem("admin")) {
-			route.push("/admin");
-		}
-	}, []);
-
 	return (
 		<React.Fragment>
 			<UpdatePS />

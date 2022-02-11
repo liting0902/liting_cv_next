@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { LanguageContext } from "../../../contexts/language.context.js";
+import React, { useContext, useState, useEffect } from "react";
 import {
 	verifyConfirmation,
 	onAuthChanged,
@@ -13,6 +12,16 @@ export default function ({ t }) {
 	const authDispatch = useContext(AuthDispatchContext);
 	const route = useRouter();
 	const [confirmCode, setConfirmCode] = useState("");
+	const logoutTimeout = setTimeout(() => {
+		logOut();
+		route.push("/admin");
+	}, 600000);
+	const stopTootipTimeout = () => clearTimeout(logoutTimeout);
+	useEffect(() => {
+		return () => {
+			stopTootipTimeout();
+		};
+	}, []);
 	const handleInputCode = (event) => {
 		event.preventDefault();
 		const { value } = event.target;
@@ -22,6 +31,7 @@ export default function ({ t }) {
 		const res = await verifyConfirmation(code);
 		const currentUser = await onAuthChanged();
 
+		window.logoutTimeout = logoutTimeout;
 		authDispatch({
 			type: "AUTHORIZATION",
 			authInfo: currentUser,

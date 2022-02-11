@@ -3,7 +3,9 @@ import { logOut } from "../pages/api/adminAuthentication.js";
 import BtnLayout from "../components/layouts/BtnLayout.js";
 import { MdLogout } from "react-icons/md";
 import { AuthContext, AuthDispatchContext } from "../contexts/auth.context";
+import { useAuthStateChanged } from "../hooks/useAuthStateChanged.js";
 export default function () {
+	const user = useAuthStateChanged();
 	const authInfo = useContext(AuthContext);
 	const authDispatch = useContext(AuthDispatchContext);
 	const [isAuth, setIsAuth] = useState(false);
@@ -26,11 +28,7 @@ export default function () {
 	return (
 		<div
 			style={{
-				display: `${
-					isAuth || (!!authInfo && !!authInfo.idToken)
-						? "block"
-						: "none"
-				}`,
+				display: `${isAuth || !!user ? "block" : "none"}`,
 				marginTop: ".6rem",
 			}}>
 			<BtnLayout>

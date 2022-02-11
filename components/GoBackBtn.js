@@ -3,11 +3,23 @@ import BtnLayout from "../components/layouts/BtnLayout.js";
 import Link from "next/link";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useRouter } from "next/router";
-import { LanguageContext } from "../contexts/language.context.js";
-export default function () {
-	const language = useContext(LanguageContext);
-	const router = useRouter();
 
+export default function () {
+	const [hideBtn, setHideBtn] = useState(false);
+	const router = useRouter();
+	useEffect(() => {
+		if (window.history.length === 1) {
+			setHideBtn(true);
+		}
+	}, []);
+	const handleBack = (event) => {
+		event.preventDefault();
+		console.log("back", window.history.length);
+		router.back();
+	};
+	if (hideBtn) {
+		return null;
+	}
 	return (
 		<div
 			style={{
@@ -15,11 +27,9 @@ export default function () {
 				position: "absolute",
 			}}>
 			<BtnLayout>
-				<Link href={`/admin`} locale={language}>
-					<a className="aBackBtn">
-						<MdOutlineArrowBackIosNew></MdOutlineArrowBackIosNew>
-					</a>
-				</Link>
+				<a className="aBackBtn" onClick={handleBack}>
+					<MdOutlineArrowBackIosNew></MdOutlineArrowBackIosNew>
+				</a>
 				<style jsx>{`
 					.aBackBtn {
 						color: white;
