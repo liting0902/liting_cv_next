@@ -7,7 +7,7 @@ const Work = () => {
 			<button
 				className="btn"
 				onClick={() =>
-					window.open("https://github.com/liting0902/CVNext")
+					window.open("https://github.com/liting0902/liting_cv_next")
 				}>
 				<FaGithub
 					style={{

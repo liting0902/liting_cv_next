@@ -32,6 +32,11 @@ function UpdatePS({ t }) {
 		setOpenUpdateModal((prevState) => !prevState);
 	};
 	const route = useRouter();
+	// useEffect(() => {
+	// 	if (!user) {
+	// 		route.push("/admin");
+	// 	}
+	// });
 	useEffect(() => {
 		const getData = async () => {
 			const fetchedData = await getExperience(language);

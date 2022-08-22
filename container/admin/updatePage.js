@@ -11,6 +11,10 @@ function UpdatePage({ t }) {
 			route.push("/admin");
 		}
 	});
+	// if (!window.sessionStorage.getItem("admin")) {
+	// 	route.push("/admin");
+	// 	return null;
+	// }
 	return (
 		<React.Fragment>
 			<CardsContainer>

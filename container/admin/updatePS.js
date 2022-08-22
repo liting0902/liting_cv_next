@@ -3,20 +3,27 @@ import {
 	updatePersonalStatement,
 	getPersonalStatement,
 } from "../../pages/api/personalStatementData.js";
-import { useAuthStateChanged } from "../../hooks/useAuthStateChanged.js";
 import { LanguageContext } from "../../contexts/language.context.js";
 import { withTranslation } from "next-i18next";
 import GoBackBtn from "../../components/GoBackBtn.js";
+import { useRouter } from "next/router";
 import styles from "./admin.module.css";
 function UpdatePS({ t }) {
 	const language = useContext(LanguageContext);
 	const psInputRef = useRef();
-	const authUser = useAuthStateChanged();
+	const route = useRouter();
 	const getPSContent = async () => {
 		const res = await getPersonalStatement(language);
 		const PSContent = res.content.replace(/\"||\'/g, "");
 		psInputRef.current.value = `${PSContent}`;
 	};
+	useEffect(() => {
+		// if (!user) {
+		// 	route.push("/admin");
+		// 	// alert("you are not logged in");
+		// }
+	});
+	// console.log("user", user);
 	useEffect(() => {
 		getPSContent();
 	}, []);
