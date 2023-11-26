@@ -19,12 +19,12 @@ export default [
 		modalComponent: () => <SkillsModal />,
 		enableModal: true,
 	},
-	{
-		title: "PS",
-		cardComponent: () => <PS />,
-		modalComponent: () => <PSModal />,
-		enableModal: true,
-	},
+	// {
+	// 	title: "PS",
+	// 	cardComponent: () => <PS />,
+	// 	modalComponent: () => <PSModal />,
+	// 	enableModal: true,
+	// },
 	{
 		title: "Work",
 		cardComponent: () => <Work />,
