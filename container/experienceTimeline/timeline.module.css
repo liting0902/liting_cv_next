@@ -1,0 +1,211 @@
+.baseTimeline {
+  width: 170vw;
+  height: calc(100vh - 5rem);
+  list-style-type: none;
+  position: absolute;
+  bottom: 0;
+  display: block;
+  z-index: 0;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+.baseTimeline::before {
+  content: "";
+  min-width: 100%;
+  border-top: 4px solid rgba(255, 255, 255, 0.486);
+  box-shadow: 0 4px 1px rgba(255, 255, 255, 0.651);
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  z-index: 0;
+}
+
+.baseTimelineItem {
+  position: relative;
+  display: inline-block;
+  width: calc(80% / 8 - 1rem);
+  margin-top: calc(50vh - 4rem);
+}
+
+.baseTimelineItem::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  content: attr(data-year);
+  border-radius: 50%;
+  width: 3.2rem;
+  height: 3.2rem;
+  padding: 0.6rem;
+  background-color: #e2a59c;
+  font-size: 1.1rem;
+  transition: all 0.8s ease-in-out;
+  box-sizing: border-box;
+  border: white 2px solid;
+  box-shadow: inset 0 0 4px 4px white, 0 0 0 2px rgb(253, 253, 253);
+}
+
+.baseItemActive::before {
+  background-color: #fcefb4;
+  border-color: rgba(235, 235, 235, 0.845);
+  color: rgb(0, 0, 0);
+}
+
+.baseTimelineDescription {
+  display: block;
+  position: absolute;
+  left: 1.4rem;
+  background: rgba(222, 222, 222, 0.3);
+  color: #463f3a;
+  height: auto;
+  font-size: 1em;
+  padding: 1em;
+  white-space: wrap;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 5px 5px rgba(255, 255, 255, 0.6);
+  text-align: center;
+  cursor: pointer;
+  z-index: 1;
+  width: 140%;
+  transition: .6s;
+}
+.baseTimelineDescription:hover{
+  background: rgba(255, 255, 255, 0.634);
+}
+.desIcon{
+  color:rgba(255, 255, 255, 0.4);
+  position: absolute;
+  right: 1em;
+}
+.zone_1 {
+  bottom: 3.4rem;
+  border-radius: 25px 10px 25px 0;
+}
+.zone_2 {
+  top: 3.4rem;
+  border-radius: 0 25px 15px 25px;
+}
+@media screen and (max-width: 770px) {
+  .baseTimeline {
+    width: 98vw;
+    height: auto;
+    display: block;
+    z-index: 1;
+    top: 4.1rem;
+    bottom: 0.2rem;
+    overflow: scroll;
+  }
+  .baseTimeline::before {
+    height: 55rem;
+    width: 2px;
+    border-left: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 4px 0 0 rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 1rem;
+    left: calc(46% + 0.8rem);
+  }
+  .baseTimelineItem {
+    position: relative;
+    display: block;
+    height: 6rem;
+    margin-top: 0.5rem;
+    margin-left: 45%;
+  }
+  .baseTimelineDescription {
+    position: absolute;
+    width: 20rem;
+    height: 10rem;
+  }
+  .zone_1 {
+    top: 1rem;
+    left: 3.2rem;
+    border-radius: 0 25px 25px 25px;
+  }
+  .zone_2 {
+    top: 1.6rem;
+    left: -20.2rem;
+    border-radius: 25px 0px 25px 25px;
+  }
+}
+@media screen and (max-width: 720px) {
+  .baseTimeline {
+    width: 100%;
+    height: calc(100vh - 10.5rem);
+    padding-bottom: 1rem;
+  }
+  .baseTimeline::before {
+    left: 2rem;
+    height: calc(10rem * 12);
+  }
+  .baseTimelineItem {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    height: 12rem;
+    margin-left: 1rem;
+  }
+
+  .zone_1 {
+    top: 2rem;
+    left: 3.3rem;
+    border-radius: 0 25px 25px 25px;
+  }
+  .zone_2 {
+    top: 2rem;
+    left: 3.3rem;
+    border-radius: 0 25px 25px 25px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .baseTimeline {
+    position: fixed;
+    width: 98vw;
+    height: 90vh;
+    padding: 0;
+  }
+  .baseTimeline::before {
+    left: 2.5rem;
+    margin-top: -1rem;
+  }
+  .baseTimelineDescription {
+    position: relative;
+    text-align: left;
+    font-size: 1em;
+    width: 65vw;
+    padding: auto 0.6em;
+    height: 10.5em;
+  }
+}
+@media screen and (orientation: portrait) {
+  .baseTimeline {
+    overflow-x: hidden;
+  }
+  .baseTimeline::before {
+    border-top: transparent 1px solid;
+    box-shadow: 0;
+  }
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .baseTimelineItem::before {
+    background-color: #3d2137;
+    color:aliceblue;
+    border: rgb(42, 35, 35) 2px solid;
+    box-shadow: inset 0 0 4px 4px rgb(85, 68, 68), 0 0 0 2px rgb(146, 115, 115);
+  }
+  .baseItemActive::before {
+    background-color: #73447b;
+    border-color: rgba(53, 39, 39, 0.845);
+    color: rgb(226, 226, 226);
+  }
+  .baseTimelineDescription{
+    background: rgba(122, 122, 122, 0);
+    color: #fdfdef;
+  } 
+  .baseTimelineDescription:hover{
+    background: rgba(80, 80, 80, 0.634);
+  }
+}
