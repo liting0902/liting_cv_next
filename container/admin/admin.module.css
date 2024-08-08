@@ -1,33 +1,67 @@
 .btnAdmin {
   /* display: flex; */
-  background: rgba(132, 132, 132, 0.5);
+  position: relative;
+  cursor: pointer;
+  background: rgba(251, 140, 89, 0.5);
   color: white;
-  font-size: 1.2em;
-  padding: 0.6em;
-  text-align: center;
-  vertical-align: middle;
-  margin: 2rem auto;
+  font-size: 1em;
+ /* text-align: center;
+ line-height: 50px; */
+  margin: auto 5rem;
+  border:none;
   border-radius: 10px;
-  height: 3.7rem;
-  min-width: 15rem;
-  letter-spacing: 0.1em;
+  height: 50px;
+  width: 12rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.btnAdmin:hover{
+  background: rgba(255, 135, 79, 0.2);
+}
+.btnAdminIcon{
+  font-size: 1.4em;
+  display: flex;
+  align-items: center;
+  transition: all 3s ease-in;
+  text-align: center;
+}
+
+.btnAdminText{
+text-align: center;
+ line-height: 50px;
 }
 .inputAdmin {
   display: block;
-  height: 1.6rem;
-  font-size: 1.4em;
-  color: black;
-  background: rgb(255, 255, 255, 0.5);
+  height: 1.4rem;
+  font-size: 1em;
+  color: rgb(27, 26, 26);
+  background: rgba(255, 201, 201, 0.5);
   padding: 0.6em;
   border: none;
-  transition: all 0.4s ease-in;
-  margin: 1em;
+  transition: all 0.8s ease-in;
+  margin: 10%;
   border-radius: 2px;
+  max-width: 500px;
+  min-width: 200px;
+  width: 70%;
 }
 .inputAdmin:focus {
   outline: none;
-  border-bottom: white 3px solid;
-  background: rgb(255, 255, 255, 0.8);
+  border-bottom: white 1px solid;
+  background: rgb(255, 255, 255);
+  color: #000;
+}
+
+.adminLink {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
 }
 .iconStyle {
   width: 2rem;
@@ -43,10 +77,13 @@
   justify-content: center;
   padding: 0 1em;
 }
-.labelStyle {
+/* .labelStyle {  
   letter-spacing: 2px;
-  color: white;
+  padding: .2em;
 }
+@media (prefers-color-scheme: dark) {
+  .labelStyle {color:aliceblue}
+} */
 .datePciker {
   width: 15em;
   background: rgb(255, 255, 255, 0.5);
@@ -62,14 +99,14 @@
 }
 .experiencePreview {
   width: 80%;
-  height: 14rem;
   min-height: 9rem;
-  font-size: 1.2em;
+  font-size: 1em;
   border: white 1px solid;
   padding: 1em;
   margin: 0.8rem;
-  box-sizing: border-box;
-  background: black;
+  box-sizing: border-box;  
+  color:black;
+  /* background: black; */
   line-height: 1.6em;
   overflow: hidden;
   display: -webkit-box;
@@ -78,6 +115,17 @@
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
+  
+}
+.experiencePreview li {
+  list-style: none;
+  padding-top: 5px;
+  font-weight: .9em;
+}
+.experiencePreview li span{ font-size: .9em;}
+.liTitle{
+ 
+  font-weight: 600;
 }
 .inputExperience {
   width: 80%;

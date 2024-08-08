@@ -1,20 +1,21 @@
+"use client";
 import React, { useContext, useState, useEffect } from "react";
 import {
   verifyConfirmation,
   onAuthChanged,
   logOut,
-} from "../../../pages/api/adminAuthentication.js";
-import { AuthDispatchContext } from "../../../contexts/auth.context.js";
+} from "@/lib/api/adminAuthentication.js";
+import { AuthDispatchContext } from "@/contexts/auth.context.js";
 import styles from "../admin.module.css";
 import { RiShieldKeyholeFill } from "react-icons/ri";
-import { useRouter } from "next/router";
-export default function ({ t }) {
+import { useRouter } from "next/navigation";
+export default function verify({ t }) {
   const authDispatch = useContext(AuthDispatchContext);
-  const route = useRouter();
+  const router = useRouter();
   const [confirmCode, setConfirmCode] = useState("");
   const logoutTimeout = setTimeout(() => {
     logOut();
-    route.push("/admin");
+    router.push("/admin");
   }, 600000);
   const stopTootipTimeout = () => clearTimeout(logoutTimeout);
   useEffect(() => {
@@ -50,20 +51,18 @@ export default function ({ t }) {
         className={styles.inputAdmin}
         type="text"
         onChange={handleInputCode}
+        cy-data="phone-log-in"
       />
-      <button
+      <div
         className={styles.btnAdmin}
         onClick={() => handleConfirmation(confirmCode)}
+        cy-data="get-otp"
       >
-        <RiShieldKeyholeFill
-          style={{
-            width: "2rem",
-            fontSize: "1.6rem",
-            marginRight: ".4rem",
-          }}
-        />
-        {t("Verify")}
-      </button>
+        <div className={styles.btnAdminIcon}>
+          <RiShieldKeyholeFill />
+        </div>
+        <div className={styles.btnAdminText}>{t("Verify")}</div>
+      </div>
     </div>
   );
 }

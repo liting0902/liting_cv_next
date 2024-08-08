@@ -1,14 +1,15 @@
+'use client'
 import React, { useContext, memo } from "react";
-import CardLayout from "../../../components/layouts/CardLayout.js";
+import CardLayout from "@/components/layouts/CardLayout.js";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
-import BtnLayout from "../../../components/layouts/BtnLayout.js";
+import BtnLayout from "@/components/layouts/BtnLayout.js";
 import {
   UpdateExperienceDataContext,
   UpdateExperienceDataDispatchContext,
-} from "../../../contexts/updateExperienceData.context.js";
-import { LanguageContext } from "../../../contexts/language.context.js";
-import { updateExperience } from "../../../pages/api/experienceData.js";
+} from "@/contexts/updateExperienceData.context.js";
+import { updateExperience } from "@/lib/api/experienceData.js";
 import styles from "../admin.module.css";
+import useLocale from "@/hooks/useLocale";
 function ExperienceCard({
   rowData,
   index,
@@ -19,7 +20,7 @@ function ExperienceCard({
 }) {
   const { startDate, endDate, schoolCompanyName, facultyJob, degreeWork } =
     rowData;
-  const language = useContext(LanguageContext);
+    const { locale } = useLocale();
   const experienceData = useContext(UpdateExperienceDataContext);
   const experienceDataDispatch = useContext(
     UpdateExperienceDataDispatchContext
@@ -35,7 +36,7 @@ function ExperienceCard({
     const newData = experienceData.filter(
       (item) => item.startDate !== experienceData[index].startDate
     );
-    const res = await updateExperience(newData, language);
+    const res = await updateExperience(newData, locale);
     if (res) {
       alert(
         `delete ${experienceData[index]["schoolCompanyName"]}- ${experienceData[index]["facultyJob"]}  successfully`
@@ -51,37 +52,19 @@ function ExperienceCard({
         padding: "1em",
       }}
     >
-      <div
-        className={styles.experiencePreview}
-        // style={{
-        //   //   display: "flex",
-        //   //   flexDirection: "column",
-        //   //   justifyContent: "center",
-        //   width: "80%",
-        //   height: "70%",
-        //   minHeight: "10rem",
-        //   fontSize: "1.em",
-        //   border: "white 1px solid",
-        //   padding: "1em",
-        //   margin: ".8rem",
-        //   boxSizing: "border-box",
-        //   background: "black",
-        //   lineHeight: "1.3em",
-        //   overflow: "auto",
-        // }}
-      >
-        <li style={{ listStyle: "none" }}>
-          {t("Duration")}: {startDate} {t("to")} {endDate}
+      <div className={styles.experiencePreview}>
+        <li >
+          <span className={styles.liTitle}>{t("Duration")}</span>:<span> {startDate} {t("to")} {endDate}</span>
         </li>
-        <li style={{ listStyle: "none" }}>
-          {t("Company/School")}: {schoolCompanyName}
+        <li >
+          <span className={styles.liTitle}>{t("Company/School")}</span>: <span>{schoolCompanyName}</span>
         </li>
-        <li style={{ listStyle: "none" }}>
-          {t("Job title/Faculty")}: {facultyJob}
+        <li >
+          <span className={styles.liTitle}>{t("Job title/Faculty")}</span>: <span>{facultyJob}</span>
         </li>
-        <li style={{ listStyle: "none" }}>
-          {t("Job description/Degree")}: {degreeWork}
-        </li>
+        {/* <li >
+          <span className={styles.liTitle}>{t("Job description/Degree")}</span>: <span>{degreeWork}</span>
+        </li> */}
       </div>
       <div
         style={{
@@ -92,11 +75,11 @@ function ExperienceCard({
         }}
       >
         <BtnLayout>
-          <MdEdit style={{ color: "yellow" }} onClick={openEditModal} />
+          <MdEdit style={{ color: "lightgrey" }} onClick={openEditModal} />
         </BtnLayout>
         <BtnLayout>
           <MdDeleteForever
-            style={{ color: "deeppink" }}
+            style={{ color: "rgb(198, 97, 97)" }}
             onClick={deleteHandler}
           />
         </BtnLayout>

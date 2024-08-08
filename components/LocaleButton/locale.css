@@ -1,0 +1,26 @@
+.langMenu {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 5rem;
+    height: 2rem;
+    background: rgb(255, 255, 255, 1);
+    color: black;
+    font-size: 1.4em;
+    cursor: pointer;
+    outline: inherit;
+    border: white 1px solid;
+  }
+  .langMenu:hover {
+    background: rgb(255, 255, 255, 0.8);
+  }
+
+  .popover {
+    width: auto;
+    height: auto;
+    position: fixed;
+    top: 4rem;
+    right: 1.4rem;
+    transition: all 0.8s;
+  }
+  

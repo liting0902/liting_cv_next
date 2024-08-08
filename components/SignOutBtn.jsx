@@ -1,20 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
-import { logOut } from "../pages/api/adminAuthentication.js";
-import BtnLayout from "../components/layouts/BtnLayout.js";
+import { logOut } from "@/lib/api/adminAuthentication.js";
+import BtnLayout from "@/components/layouts/BtnLayout.js";
 import { MdLogout } from "react-icons/md";
-import { AuthContext, AuthDispatchContext } from "../contexts/auth.context";
+import { AuthContext, AuthDispatchContext } from "@/contexts/auth.context";
 import { useAuthStateChanged } from "../hooks/useAuthStateChanged.js";
-export default function () {
+import { useRouter } from "next/navigation";
+export default function SignOutBtn({locale}) {
 	const user = useAuthStateChanged();
-	const authInfo = useContext(AuthContext);
 	const authDispatch = useContext(AuthDispatchContext);
+	const router = useRouter()
 	const [isAuth, setIsAuth] = useState(false);
 	useEffect(() => {
 		if (!!window && window.sessionStorage.getItem("admin")) {
 			setIsAuth(true);
 		}
-	});
+	},[]);
 	const handleLogout = async (event) => {
+		
 		event.preventDefault();
 		const result = await logOut();
 		if (result) {
@@ -24,6 +26,8 @@ export default function () {
 				authInfo: { expirationTime: null, idToken: null },
 			});
 		}
+		router.push(`/${locale}/admin/logout`)
+		
 	};
 	return (
 		<div

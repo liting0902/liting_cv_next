@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { FaSuperpowers } from "react-icons/fa";
 import styles from "./timeline.module.css";
 import smoothscroll from "smoothscroll-polyfill";
-
-export default function ({
+import { BiExpand } from "react-icons/bi";
+import { FaCompressArrowsAlt } from "react-icons/fa";
+import { FaCompressAlt } from "react-icons/fa";
+export default function TimelineDetail({
   index,
   year,
   title,
@@ -18,7 +20,7 @@ export default function ({
   const [isStaggered, setIsStaggered] = useState(true);
   const [isExpanded, setExpanded] = useState(false);
   const [selectedID, setSelectedID] = useState(false);
-  const [isSmallSize, setSmallSize] = useState(false);
+  const [isPad, setPad] = useState(false);
   const classesBaseItem = styles.baseTimelineItem;
   const classActive = [styles.baseTimelineItem, styles.baseItemActive].join(
     " "
@@ -28,7 +30,7 @@ export default function ({
   const size = useWindowSize();
 
   useEffect(() => {
-    if (size.width < 900) setSmallSize(true);
+    if (size.width < 900) setPad(true);
   });
 
   const handleExpanded = (event, index) => {
@@ -38,27 +40,16 @@ export default function ({
     setSelectedID(index);
     setIsStaggered(false);
     smoothscroll.polyfill();
-    if (maxLength - 1 === index && isExpanded) {
-      window.scrollTo({
-        left: 0,
-        behavior: "smooth",
-      });
-    } else if (!isExpanded) {
-      window.scrollTo({
-        left: leftSpace,
-        behavior: "smooth",
-      });
-    }
   };
 
   return (
     <motion.a
-      className={isExpanded && !isSmallSize ? classActive : classesBaseItem}
+      className={isExpanded && !isPad ? classActive : classesBaseItem}
       ref={cardRef}
       data-year={year}
       onClick={(event) => handleExpanded(event, index)}
     >
-      {isSmallSize || isExpanded ? (
+      {isPad || isExpanded ? (
         //expanded
         <motion.span
           className={index % 2 === 0 ? classZone1 : classZone2}
@@ -66,12 +57,20 @@ export default function ({
           animate={{ opacity: 1, translateX: 0 }}
           transition={{
             duration: 0.31,
-            delay: 0.28 * (isSmallSize ? index : 1),
+            delay: 0.28 * (isPad ? index : 1),
           }}
           style={{
             textAlign: "left",
           }}
         >
+          <span
+            className={styles.desIcon}
+            style={{
+              display: `${isPad ? "none" : "inline"}`,
+            }}
+          >
+            <FaCompressAlt />
+          </span>
           <div style={{ fontSize: "0.8rem" }}>{duration}</div>
           <div style={{ margin: "0 auto" }}>
             {title} - {subtitle}
@@ -88,6 +87,7 @@ export default function ({
               >
                 <FaSuperpowers
                   style={{
+                    color: "white",
                     fontSize: "0.7rem",
                     paddingRight: "0.5rem",
                   }}
@@ -110,6 +110,9 @@ export default function ({
             delay: isStaggered ? index * 0.2 : 0.2,
           }}
         >
+          <span className={styles.desIcon}>
+            <BiExpand />
+          </span>
           <div>{title}</div>
           <div>{subtitle}</div>
         </motion.div>

@@ -1,51 +1,38 @@
+"use client";
 import React, { useEffect } from "react";
-import CardsContainer from "../../components/layouts/CardsContainer.js";
-import CardLayout from "../../components/layouts/CardLayout.js";
+import CardsContainer from "@/components/layouts/CardsContainer.js";
+import CardLayout from "@/components/layouts/CardLayout.js";
 import Link from "next/link";
 import { withTranslation } from "next-i18next";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import styles from "./admin.module.css";
 function UpdatePage({ t }) {
-	const route = useRouter();
-	useEffect(() => {
-		if (!window.sessionStorage.getItem("admin")) {
-			route.push("/admin");
-		}
-	});
-	// if (!window.sessionStorage.getItem("admin")) {
-	// 	route.push("/admin");
-	// 	return null;
-	// }
-	return (
-		<React.Fragment>
-			<CardsContainer>
-				<CardLayout>
-					<Link href="/admin/personal-statement">
-						<a className="adminLink">
-							<h1>Personal Statement</h1>
-						</a>
-					</Link>
-				</CardLayout>
-				<CardLayout>
-					<Link href="/admin/experience">
-						<a className="adminLink">
-							<h1>Education Work Experience</h1>
-						</a>
-					</Link>
-				</CardLayout>
-				<style jsx>{`
-					.adminLink {
-						height: 100%;
-						width: 100%;
-						display: flex;
-						flex-direction: row;
-						align-items: center;
-						justify-content: center;
-						text-decoration: none;
-						color: inherit;
-					}
-				`}</style>
-			</CardsContainer>
-		</React.Fragment>
-	);
+  const router = useRouter();
+  useEffect(() => {
+    if (!window.sessionStorage.getItem("admin")) {
+      router.push("/admin");
+    }
+  }, []);
+
+  return (
+    <React.Fragment>
+      <CardsContainer>
+        <CardLayout>
+          <Link className={styles.adminLink} href="/admin/personal-statement">
+            <span style={{ textAlign: "center" }}>
+              <h2>{t("Personal Statement")}</h2>
+            </span>
+          </Link>
+        </CardLayout>
+        <CardLayout>
+          <Link className={styles.adminLink} href="/admin/experience">
+            <span style={{ textAlign: "center" }}>
+              <h2>{t("Education Work Experience")}</h2>
+            </span>
+          </Link>
+        </CardLayout>
+      </CardsContainer>
+    </React.Fragment>
+  );
 }
 export default withTranslation("common")(UpdatePage);

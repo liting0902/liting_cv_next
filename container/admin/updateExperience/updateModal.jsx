@@ -1,19 +1,24 @@
+'use client'
 import React, { useRef, useContext, useEffect } from "react";
-import Modal from "../../../components/Modal.js";
-import { updateExperience } from "../../../pages/api/experienceData.js";
+import Modal from "@/components/layouts/Modal.js";
+import { updateExperience } from "@/lib/api/experienceData.js";
 import styles from "../admin.module.css";
 import { withTranslation } from "next-i18next";
-import { LanguageContext } from "../../../contexts/language.context.js";
+import useLocale from "@/hooks/useLocale.js";
 import {
   UpdateExperienceDataContext,
   UpdateExperienceDataDispatchContext,
-} from "../../../contexts/updateExperienceData.context.js";
+} from "@/contexts/updateExperienceData.context.js";
+import {ThemeToggle} from '@/contexts/theme.context.js'
+import Label from "@/components/layouts/Label.js";
 function UpdateModal({ t, toggleHandler, selectedId, isAddNew }) {
-  const language = useContext(LanguageContext);
+
+  const {locale} = useLocale()
   const experienceData = useContext(UpdateExperienceDataContext);
   const experienceDataDispatch = useContext(
     UpdateExperienceDataDispatchContext
   );
+  const isDark = useContext(ThemeToggle)
   const startDateRef = useRef();
   const endDateRef = useRef();
   const schoolCompanyNameRef = useRef();
@@ -45,23 +50,21 @@ function UpdateModal({ t, toggleHandler, selectedId, isAddNew }) {
     };
     if (!isAddNew) experienceData.splice(selectedId, 1, newData);
     const setData = !isAddNew ? experienceData : [...experienceData, newData];
-    const res = await updateExperience(setData, language);
-    console.log("save:::@", selectedId);
+    const res = await updateExperience(setData, locale);
+
     experienceDataDispatch({ type: "DATA", data: setData });
     if (res) {
-      // console.log(setData);
       alert("Update successfully");
       toggleHandler(false);
-      // console.log(experienceData, "~~~~~", newData);
     }
   };
-  console.log("isAddNew", isAddNew);
+
   return (
-    <Modal toggleHandler={toggleHandler} enableThemeToggle={false}>
-      <form onSubmit={handleSave} className={styles.formExperience}>
-        <label htmlFor="start-date" className={styles.labelStyle}>
+    <Modal toggleHandler={toggleHandler} enableThemeToggle={true}>
+      <form onSubmit={handleSave} className={styles.formExperience} style={{color:`${isDark?"white":'black'}`}}>
+        <Label htmlFor="start-date">
           {t("From")}:
-        </label>
+        </Label>
         <input
           ref={startDateRef}
           type="date"
@@ -70,9 +73,9 @@ function UpdateModal({ t, toggleHandler, selectedId, isAddNew }) {
           className={styles.datePciker}
           // required
         />
-        <label htmlFor="end-date" className={styles.labelStyle}>
+        <Label htmlFor="end-date">
           {t("End")}:
-        </label>
+        </Label>
         <input
           ref={endDateRef}
           type="date"
@@ -80,35 +83,37 @@ function UpdateModal({ t, toggleHandler, selectedId, isAddNew }) {
           name="end-date"
           className={styles.datePciker}
         />
-        <label htmlFor="unit" className={styles.labelStyle}>
+        <Label htmlFor="unit">
           {t("Company/School")}:
-        </label>
+        </Label>
         <input
           type="text"
           ref={schoolCompanyNameRef}
           id="unit"
           className={styles.inputExperience}
         />
-        <label htmlFor="title-faculty" className={styles.labelStyle}>
+        <Label htmlFor="title-faculty">
           {t("Job title/Faculty")}:
-        </label>
+        </Label>
         <input
           type="text"
           ref={facultyJobRef}
           id="title-faculty"
           className={styles.inputExperience}
         />
-        <label htmlFor="work-degree" className={styles.labelStyle}>
+        <Label htmlFor="work-degree">
           {t("Job description/Degree")}:
-        </label>
+        </Label>
         <textarea
           type="text"
           ref={degreeWorkRef}
           id="work-degree"
           className={styles.inputExperience}
+          style={{minHeight:'5em'}}
         />
         <input
           className={styles.btnAdmin}
+          style={{marginLeft:'70%'}}
           type="submit"
           value={t("Confirm and update")}
         />

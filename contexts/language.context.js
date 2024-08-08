@@ -1,18 +1,27 @@
-import React, { createContext, useReducer } from "react";
+"use client";
+import React, { createContext, useReducer, useEffect } from "react";
 import localeReducer from "../reducers/locale.reducer";
-import { useRouter } from "next/router";
 
 export const LanguageContext = createContext();
-export const DispatchContext = createContext();
+export const LangDispatchContext = createContext();
 
 export function LanguageProvider(props) {
-	const router = useRouter();
-	const [language, dispatch] = useReducer(localeReducer, router.locale);
-	return (
-		<LanguageContext.Provider value={language}>
-			<DispatchContext.Provider value={dispatch}>
-				{props.children}
-			</DispatchContext.Provider>
-		</LanguageContext.Provider>
-	);
+  const [language, dispatch] = useReducer(localeReducer, "zh");
+
+  useEffect(() => {
+    if (document) {
+      const lang = document.cookie.split(";").map((ele) => {
+        const elePair = ele.split("=");
+        return elePair[0] === "NEXT_LOCALE" && elePair[1];
+      })[0];
+      dispatch({ type: "TRANSLATE", language: lang ? lang : "zh" });
+    }
+  }, []);
+  return (
+    <LanguageContext.Provider value={language}>
+      <LangDispatchContext.Provider value={dispatch}>
+        {props.children}
+      </LangDispatchContext.Provider>
+    </LanguageContext.Provider>
+  );
 }

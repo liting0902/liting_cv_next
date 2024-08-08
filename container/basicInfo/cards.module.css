@@ -1,32 +1,32 @@
 .divContainer {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	position: relative;
-	align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: relative;
+  align-items: center;
 }
 .divBox {
-	border: white 1px solid;
-	width: 80%;
-	max-width: 16rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	padding: 0.5rem;
-	background: rgb(0, 0, 0, 0.3);
-	overflow: none;
-	white-space: wrap;
+  border: white 1px solid;
+  width: 80%;
+  max-width: 16rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0.5rem;
+  background: rgb(0, 0, 0, 0.3);
+  overflow: none;
+  white-space: wrap;
 }
 .divInfoText {
-	display: flex;
-	line-height: 3rem;
-	letter-spacing: 0.1rem;
-	color: white;
-	flex-direction: row;
-	justify-content: center;
-	flex-wrap: wrap;
-	align-items: center;
-	font-size: 1.2rem;
+  display: flex;
+  line-height: 3rem;
+  letter-spacing: 0.1rem;
+  color: white;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 1.2rem;
 }
 /* @media screen and (max-width: 280px) {
 	.divBox {

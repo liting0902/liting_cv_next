@@ -1,18 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+"use client";
+import React, { useContext, useState, useEffect } from "react";
 import SignIn from "./signIn";
 import UpdatePage from "./updatePage.js";
-import {
-	AuthContext,
-	AuthDispatchContext,
-} from "../../contexts/auth.context.js";
-import { useAuthStateChanged } from "../../hooks/useAuthStateChanged.js";
-export default function () {
-	const authInfo = useContext(AuthContext);
-	// const authDispatch = useContext(AuthDispatchContext);
-	const user = useAuthStateChanged();
-	const [isAuth, setIsAuth] = useState(false);
+import { useAuthStateChanged } from "@/hooks/useAuthStateChanged.js";
 
-	return (
-		<React.Fragment>{user ? <UpdatePage /> : <SignIn />}</React.Fragment>
-	);
+export default function Admin() {
+  const user = useAuthStateChanged();
+
+  return <React.Fragment>{user ? <UpdatePage /> : <SignIn />}</React.Fragment>;
 }

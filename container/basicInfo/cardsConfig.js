@@ -7,28 +7,31 @@ import SkillsModal from "../modalDescription/skillsModal.js";
 import PSModal from "../modalDescription/psModal.js";
 
 export default [
-	{
-		title: "BasicInfo",
-		cardComponent: () => <BasicInfo />,
-		modalComponent: () => <BasicInfoModal />,
-		enableModal: true,
-	},
-	{
-		title: "Skills",
-		cardComponent: () => <Skills />,
-		modalComponent: () => <SkillsModal />,
-		enableModal: true,
-	},
-	// {
-	// 	title: "PS",
-	// 	cardComponent: () => <PS />,
-	// 	modalComponent: () => <PSModal />,
-	// 	enableModal: true,
-	// },
-	{
-		title: "Work",
-		cardComponent: () => <Work />,
-		modalComponent: () => null,
-		enableModal: false,
-	},
+  {
+    title: "BasicInfo",
+    cardComponent: () => <BasicInfo />,
+    modalComponent: () => <BasicInfoModal />,
+    enableModal: true,
+    overrideStyle: { width: "50vw" },
+  },
+  {
+    title: "Technical Skills",
+    cardComponent: () => <Skills />,
+    modalComponent: (props) => <SkillsModal {...props} />,
+    enableModal: true,
+    overrideStyle: { maxWidth: "66vw" },
+  },
+  {
+    title: "PS",
+    cardComponent: () => <PS />,
+    modalComponent: (props) => <PSModal {...props} />,
+    enableModal: true,
+    overrideStyle: { maxWidth: "90vw", height: "90vh" },
+  },
+  {
+    title: "Work",
+    cardComponent: () => <Work />,
+    modalComponent: () => null,
+    enableModal: false,
+  },
 ];

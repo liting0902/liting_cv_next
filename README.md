@@ -1,12 +1,23 @@
-## About this project
+# This is a personal profile project
 
-### This CV is a SSR and CSR hybrid project via Next.js framework.
+    -Frontend : A SSR and CSR hybrid project via Next.js
+    -Backebd : Data and auth providor are using Firebase
 
-### Two main parts of this project :
+## There are two main sections of this project
 
--   [Main page (RWD ready)](https://cv-liting.vercel.app/)
-    -   Public to general users, read-only pages.
--   [Admin page](https://cv-liting.vercel.app/admin)
-    -   Allow authorized users to crud data through cloud-hosted database(firestore).
-    -   Authentication processed via phone number(OTP through message).(Only available for Taiwanese mobile operators).
-    -   Please note the pages are for demonstration, data accessibility is only on client side, any updated data WON'T be saved to database.(Only specific users can modify database)
+- [Main page (RWD ready)](https://liting-cv.vercel.app/en)Public to general users, read-only pages.
+
+- [Admin page](https://liting-cv.vercel.app/en/admin)
+  Allow authorized users to crud data through cloud-hosted database(firestore).
+- Authentication processed via phone number(OTP through message).(Only available for Taiwanese mobile operators).
+- Please note the pages are for demonstration, data accessibility is only on client side, any crud action is only available for privilege user.
+  
+## It's also color-scheme friendly 
+
+### At light mode: 
+
+![light mode](public/light.png "light mode")
+
+### At dark mode: 
+
+![dark mode](public/dark.png "dark mode")
