@@ -16,8 +16,8 @@
 
 ### When system is at light mode: 
 
-![light mode](public/light.png "light mode")
+![light mode](public/light1.png "light mode")
 
 ### When system is at dark mode: 
 
-![dark mode](public/dark.png "dark mode")
+![dark mode](public/dark1.png "dark mode")
