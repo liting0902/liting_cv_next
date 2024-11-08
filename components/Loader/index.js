@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-import { LoaderToggle } from "@/contexts/loader.context.js";
-export default function Loader({ children }) {
-  const isLoading = useContext(LoaderToggle);
+import React from "react";
+
+export default function Loader() {
   return (
     <div>
       <div className="loader-background">
-        {isLoading && <div className="loader"></div>}
+        <div className="loader"></div>
       </div>
-      <div>{children}</div>
     </div>
   );
 }

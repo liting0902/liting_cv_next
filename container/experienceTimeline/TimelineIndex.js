@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import styles from "./timeline.module.css";
 import TimelineItem from "./TimelineItem.js";
 import { useRouter } from "next/navigation";
-import Loader from "@/components/Loader";
 import smoothscroll from "smoothscroll-polyfill";
 function mouseScroll(v) {
   window.scrollTo({
@@ -20,11 +19,9 @@ function TimelineIndex({ locale }) {
   }, []);
   return (
     <React.Fragment>
-      <Loader>
-        <div className={styles.baseTimeline}>
-          <TimelineItem locale={locale} />
-        </div>
-      </Loader>
+      <div className={styles.baseTimeline}>
+        <TimelineItem locale={locale} />
+      </div>
     </React.Fragment>
   );
 }
