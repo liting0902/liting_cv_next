@@ -19,7 +19,7 @@ const Navbar = ({ routeConfig, setLoading = false, locale }) => {
   const isMobile = size.width < 420;
   const NavLinks = routeConfig.map((item, index) => {
     return (
-      <div key={index} className="navItem">
+      <div key={index} className="navItem" data-cy="nav-item">
         <NavItem
           path={item.path}
           title={item.title}

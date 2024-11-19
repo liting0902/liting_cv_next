@@ -53,6 +53,7 @@ function Modal({
           pointerEvents: "auto",
           zIndex: 2,
         }}
+        data-cy="modal"
       >
         <div
           style={{
@@ -67,13 +68,12 @@ function Modal({
               isDarkMode={isDark}
             />
           )}
-          {/* <div className={styles.closeIcon}> */}
           <MdOutlineClose
             className={styles.closeIcon}
             style={{ fontSize: closeIconSize }}
             onClick={toggleHandler}
+            data-cy="modal-close"
           />
-          {/* </div> */}
           <div
             style={{
               position: "absolute",

@@ -16,7 +16,7 @@ function LocaleButton({ t }) {
   const extractPathname = pathname
     .split("/")
     .filter((ele, i) => {
-      if (ele !== "" && ele !== "en") return ele;
+      if (ele !== "" && ele !== "zh") return ele;
     })
     .join("/");
 
@@ -24,40 +24,47 @@ function LocaleButton({ t }) {
     event.preventDefault();
     setOpen((prev) => !prev);
   };
-
+  const langToggle = (lang) => (evt) => {
+    if (lang === locale) return null;
+    router.push(`/${lang}/${extractPathname}`);
+    handleOpenPopover(evt);
+  };
   return (
     <React.Fragment>
       <BtnLayout>
-        <div onClick={handleOpenPopover}>
-          {open ? <MdClose /> : <MdOutlineGTranslate />}
+        <div onClick={handleOpenPopover} data-cy="locale-btn">
+          {open ? (
+            <span data-cy="locale-close">
+              <MdClose />
+            </span>
+          ) : (
+            <span data-cy="locale-open">
+              <MdOutlineGTranslate />
+            </span>
+          )}
         </div>
       </BtnLayout>
       <div
         className="popover"
+        data-cy="locale-menu"
         style={{
           opacity: `${open ? 1 : 0}`,
           pointerEvents: `${open ? "auto" : "none"}`,
         }}
       >
         <span
-          // href={`/en/${extractPathname}`}
-          className="langMenu"
-          onClick={(evt) => {
-            if (locale === "en") return null;
-            router.push(`/en/${extractPathname}`);
-            handleOpenPopover(evt);
-          }}
+          data-cy="locale-en"
+          style={{ broderRadius: "5px 5px 0 0" }}
+          className={`langMenu en ${locale === "en" ? "activeLang" : ""}`}
+          onClick={langToggle("en")}
         >
           {t("En")}
         </span>
         <span
-          // href={}
-          className="langMenu"
-          onClick={(evt) => {
-            if (locale === "zh") return null;
-            router.push(`/zh/${extractPathname}`);
-            handleOpenPopover(evt);
-          }}
+          data-cy="locale-zh"
+          style={{ broderRadius: "5px 5px 0 0" }}
+          className={`langMenu zh ${locale === "zh" ? "activeLang" : ""}`}
+          onClick={langToggle("zh")}
         >
           {t("Zh")}
         </span>

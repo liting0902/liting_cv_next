@@ -33,5 +33,6 @@ export default [
     cardComponent: () => <Work />,
     modalComponent: () => null,
     enableModal: false,
+    link: "https://github.com/liting0902/liting_cv_next",
   },
 ];

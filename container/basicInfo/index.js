@@ -31,7 +31,9 @@ function mainCards(props) {
               <a
                 className="CardStyle"
                 onClick={item.enableModal ? (e) => toggleHandler(e, i) : null}
-                cy-data="main-cards"
+                data-cy="dashboard-cards"
+                href={item.link ? item.link : null}
+                target="_blank"
               >
                 <item.cardComponent />
               </a>

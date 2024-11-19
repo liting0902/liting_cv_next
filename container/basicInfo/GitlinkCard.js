@@ -1,22 +1,17 @@
-import React from 'react'
-import { FaGithub } from 'react-icons/fa'
+import React from "react";
+import { FaGithub } from "react-icons/fa";
 
 const Work = () => {
   return (
     <React.Fragment>
-      <button
-        className="btn"
-        onClick={() => window.open('https://github.com/liting0902/liting_cv_next')}
-      >
-        <FaGithub
-          style={{
-            border: '6px solid rgb(255,255,255,0.8)',
-            borderRadius: '50%',
-            fontSize: '10vh',
-            color: 'rgb(255,255,255,0.8)',
-          }}
-        />
-      </button>
+      <FaGithub
+        style={{
+          border: "6px solid rgb(255,255,255,0.8)",
+          borderRadius: "50%",
+          fontSize: "10vh",
+          color: "rgb(255,255,255,0.8)",
+        }}
+      />
       <style jsx>{`
         .btn {
           width: 100%;
@@ -28,7 +23,7 @@ const Work = () => {
         }
       `}</style>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default Work
+export default Work;
