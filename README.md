@@ -8,6 +8,11 @@
   <source src="cypress/videos/layout.spec.cy.js.mp4" type="video/mp4">
 </video>
 
+
+https://github.com/user-attachments/assets/47045487-a09c-4889-b02d-2688fabbf66f
+
+
+
 ## There are two main sections of this project
 
 - [Main pages (RWD ready)](https://liting-cv.vercel.app/)Public and read-only pages to dmonstrating my personal infomation.
