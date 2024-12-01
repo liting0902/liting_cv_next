@@ -4,10 +4,6 @@
     -Backebd : Data and auth providor are using Firebase
     
 ## A quick overiew
-<video width="700" height="560" controls>
-  <source src="cypress/videos/layout.spec.cy.js.mp4" type="video/mp4">
-</video>
-
 
 https://github.com/user-attachments/assets/47045487-a09c-4889-b02d-2688fabbf66f
 
