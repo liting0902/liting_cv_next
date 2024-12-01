@@ -1,11 +1,16 @@
-# This is a personal profile project
+# Hi, this is Liting's portfolio project
 
     -Frontend : A SSR and CSR hybrid project via Next.js
     -Backebd : Data and auth providor are using Firebase
+    
+## A quick overiew
+<video width="700" height="560" controls>
+  <source src="cypress/videos/layout.spec.cy.js.mp4" type="video/mp4">
+</video>
 
 ## There are two main sections of this project
 
-- [Main page (RWD ready)](https://liting-cv.vercel.app/)Public to general users, read-only pages.
+- [Main pages (RWD ready)](https://liting-cv.vercel.app/)Public and read-only pages to dmonstrating my personal infomation.
 
 - [Admin page](https://liting-cv.vercel.app/admin)
   Allow authorized users to crud data through cloud-hosted database(firestore).
@@ -13,6 +18,8 @@
 - Please note the pages are for demonstration, data accessibility is only on client side, any crud action is only available for privilege user.
   
 ## It's also color-scheme friendly 
+
+
 
 ### When system is at light mode: 
 
