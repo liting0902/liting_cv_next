@@ -110,7 +110,7 @@ export default function TimelineDetail({
             delay: isStaggered ? index * 0.2 : 0.2,
           }}
         >
-          <span className={styles.desIcon}>
+          <span className={styles.desIcon} data-cy="more-info-icon">
             <BiExpand />
           </span>
           <div>{title}</div>
